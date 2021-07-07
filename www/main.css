@@ -1,0 +1,73 @@
+body {
+  margin: 20px;
+  background-color: #fafafa;
+  color: #333;
+  font-family: Menlo, sans-serif;
+}
+
+a {
+  text-decoration: none;
+  color: #11a4e6;
+  font-size: 16pt;
+  cursor: pointer;
+  transition:all 200ms ease;
+	-moz-transition:all 200ms ease;
+	-webkit-transition:all 200ms ease;
+}
+
+a:hover {
+  color: #55e7f4;
+}
+
+.blue {
+  color: #11a4e6;
+}
+
+.header, .links {
+  display: flex;
+}
+
+.logo {
+  font-size: 24pt;
+  font-weight: bold;
+  cursor: pointer;
+  flex: 1;
+}
+
+.back {
+  flex: 1;
+  text-align: center;
+}
+
+p {
+  width: 1000px;
+}
+
+.art {
+  flex: 1;
+}
+
+.img {
+  margin-top: 24px;
+}
+
+.img img {
+  width: 150px;
+  margin-left: 12px;
+}
+
+.fractalBlock {
+  width: 500px;
+}
+
+.down {
+  width: Calc(100% - 40px);
+  position: absolute;
+  bottom: 0;
+  margin-bottom: 10px;
+}
+
+.footer {
+  display: flex;
+  justify-content: space-between;
+}

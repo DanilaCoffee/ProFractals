@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="main.css">
+  <title>ProFractals</title>
+</head>
+<body>
+<h2 class="header"><div class="logo"><span class="blue">Pro</span>Fractals</div><div class="back"><a href="index.html">Назад</a></div></h2><br>
+<div style="width: 500px">
+  <h2><b>Треугольник Серпинского</b></h2>
+  Фрактал, один из двумерных аналогов множества Кантора. Полностью самоподобен и строиться методом хаоса.
+</div>
+<div>
+  <canvas id="canvas2" width="500" height="500"></canvas>
+</div>
+<div>
+  <pre>
+    let canvas2 = document.getElementById('canvas2')
+    if (canvas2) {
+      let ctx2 = canvas2.getContext("2d")
+
+      let fx = 250
+      let fy = 480
+      let x, y
+
+      for (let i = 0; i < 10000; i++) {
+        switch (Math.floor(Math.random() * 3)) {
+          case 0:
+            x = (fx + 20) / 2
+            y = (fy + 480) / 2
+          break;
+          case 1:
+            x = (fx + 250) / 2
+            y = (fy + 60) / 2
+          break;
+          case 2:
+            x = (fx + 480) / 2
+            y = (fy + 480) / 2
+          break;
+        }
+        fx = x
+        fy = y
+        ctx2.fillRect(x, y, 1, 1)
+      }
+    }
+  </pre>
+</div>
+<hr>
+<div class="footer">
+  <div class="copy">© Все права защищены 2020.</div>
+  <div class="email">kofeikun@gmail.com</div>
+</div>
+<script src="main.js"></script>
+</body>
+</html>

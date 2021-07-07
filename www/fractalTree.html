@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="main.css">
+  <title>ProFractals</title>
+</head>
+<body>
+<h2 class="header"><div class="logo"><span class="blue">Pro</span>Fractals</div><div class="back"><a href="index.html">Назад</a></div></h2><br>
+<div class="fractalBlock">
+  <h2><b>Простое фрактальное дерево</b></h2>
+  Фигура обладающая самоподобием и напоминающая дерево. Можно двигать ползунки и менять угол наклона веток и скорость уменьшения их уменьшения.
+</div>
+<div style="display: flex;">
+  <div>
+    <canvas id="canvas1" width="770" height="600"></canvas>
+  </div>
+  <div>
+    <br><br><br><br>
+    <h3>Наклон</h3>
+    <input type="range" min="0" max="180" value="40"><br><br>
+    <h3>Скорость уменьшения веток</h3>
+    <input type="range" min="15" max="20" value="15">
+  </div>
+</div>
+<br>
+<pre>
+  let canvas1 = document.getElementById('canvas1')
+  if (canvas1) {
+    let ctx1 = canvas1.getContext("2d")
+
+    ctx1.lineWidth = "1"
+
+    function DrawFractal(incline, speed) {
+
+      function fractalPainter(x, y, length, angle) {
+
+        let x1 = x + length * Math.sin(angle * Math.PI * 2 / 360)
+        let y1 = y + length * Math.cos(angle * Math.PI * 2 / 360)
+
+        ctx1.moveTo(x, canvas1.height - y)
+        ctx1.lineTo(x1, canvas1.height - y1)
+
+        if (length > 2)
+        {
+          fractalPainter(x1, y1, length / speed, angle + incline)
+          fractalPainter(x1, y1, length / speed, angle - incline)
+        }
+
+      }
+
+      fractalPainter(canvas1.width / 2, 140 - (speed * 100), 180, 0)
+
+    }
+
+    let input1 = document.getElementsByTagName("input")[0]
+    let input2 = document.getElementsByTagName("input")[1]
+
+    setInterval(()=>{
+
+      ctx1.clearRect(0, 0, canvas1.width, canvas1.height)
+
+      ctx1.beginPath()
+      DrawFractal(+input1.value, (+input2.value / 10))
+      ctx1.stroke()
+      ctx1.closePath()
+
+    }, 50);
+  }
+</pre>
+<br>
+<hr>
+<div class="footer">
+  <div class="copy">© Все права защищены 2020.</div>
+  <div class="email">kofeikun@gmail.com</div>
+</div>
+<script src="main.js"></script>
+</body>
+</html>

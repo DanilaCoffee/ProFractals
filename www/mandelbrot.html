@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="main.css">
+  <title>ProFractals</title>
+</head>
+<body>
+<h2 class="header"><div class="logo"><span class="blue">Pro</span>Fractals</div><div class="back"><a href="index.html">Назад</a></div></h2><br>
+<div class="fractalBlock">
+  <h2><b>Множество Мондельброта</b></h2>
+  Множество таких точек c на комплексной плоскости, для которых определенное рекуррентное соотношение задаёт ограниченную последовательность.
+</div><br>
+<div>
+  <canvas id="canvas3" width="1200" height="700"></canvas>
+</div>
+<div>
+  <pre>
+    function Complex(x, y) {
+      this.a = x
+      this.b = y
+    }
+
+    Complex.prototype.Square = function() {
+      tmp = (this.a * this.a) - (this.b * this.b)
+      this.b = 2 * this.a * this.b
+      this.a = tmp
+    }
+
+    Complex.prototype.Absolute = function() {
+      return Math.sqrt((this.a * this.a) + (this.b * this.b))
+    }
+
+    Complex.prototype.Plus = function(c) {
+      this.a += c.a
+      this.b += c.b
+    }
+
+    let canvas3 = document.getElementById('canvas3')
+    if (canvas3) {
+      let ctx3 = canvas3.getContext("2d")
+
+      for (var i = 0; i < canvas3.width; i++) {
+
+        for (var j = 0; j < canvas3.height; j++) {
+
+          let a = (i - canvas3.width / 2) / (canvas3.width / 4)
+          let b = (j - canvas3.height / 2) / (canvas3.height / 2.6)
+
+          let c = new Complex(a, b)
+          let z = new Complex(0, 0)
+
+          let counter = 0
+
+          do {
+
+            counter++
+            z.Square()
+            z.Plus(c)
+
+            if (z.Absolute() > 2) {
+              break
+            }
+
+          } while (counter < 100)
+
+          if (counter == 100) {
+            ctx3.fillStyle = "black"
+            ctx3.fillRect(i, j, 1, 1)
+          } else {
+            if (a < 1) {
+              ctx3.fillStyle = "rgb(" + counter * 12 + ",0," + 113 + ")"
+              ctx3.fillRect(i, j, 1, 1)
+            }
+          }
+        }
+      }
+
+      ctx3.fill()
+    }
+  </pre>
+</div>
+<br>
+<hr>
+<div class="footer">
+  <div class="copy">© Все права защищены 2020.</div>
+  <div class="email">kofeikun@gmail.com</div>
+</div>
+<script src="main.js"></script>
+</body>
+</html>
